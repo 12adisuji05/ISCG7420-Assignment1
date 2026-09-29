@@ -4,6 +4,8 @@ ISCG7420 Web Application Development - Assignment 1, Task 2
 
 Student: Adithyan Suji (Student ID: 1589957)
 
+Live website: https://pikiora-clinic.onrender.com
+
 ## Apps
 
 - `clinic` - models (Doctor, Slot, Appointment) and the patient pages
