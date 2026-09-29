@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Appointment Slots{% endblock %}
+
+{% block content %}
+<h1>Appointment Slots</h1>
+<a href="{% url 'add-slot' %}" class="btn btn-primary mb-3">Add Slot</a>
+<table class="table">
+    <tr><th>Doctor</th><th>Date</th><th>Time</th><th>Status</th><th></th></tr>
+    {% for slot in object_list %}
+        <tr>
+            <td>{{ slot.doctor }}</td>
+            <td>{{ slot.date }}</td>
+            <td>{{ slot.start_time }} - {{ slot.end_time }}</td>
+            <td>{% if slot.appointment %}Booked{% else %}Available{% endif %}</td>
+            <td>
+                <a href="{% url 'update-slot' slot.pk %}" class="btn btn-secondary btn-sm">Edit</a>
+                <a href="{% url 'delete-slot' slot.pk %}" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+        </tr>
+    {% empty %}
+        <tr><td colspan="5">No slots yet.</td></tr>
+    {% endfor %}
+</table>
+<a href="{% url 'dashboard' %}">Back to dashboard</a>
+{% endblock %}

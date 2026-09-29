@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<h1>Admin Dashboard</h1>
+<div class="list-group">
+    <a href="{% url 'dashboard-doctors' %}" class="list-group-item list-group-item-action">Manage Doctors</a>
+    <a href="{% url 'dashboard-slots' %}" class="list-group-item list-group-item-action">Manage Appointment Slots</a>
+    <a href="{% url 'dashboard-appointments' %}" class="list-group-item list-group-item-action">All Appointments</a>
+    <a href="{% url 'dashboard-patients' %}" class="list-group-item list-group-item-action">Patient Accounts</a>
+</div>
+{% endblock %}
