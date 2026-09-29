@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Booking Confirmed{% endblock %}
+
+{% block content %}
+<div class="alert alert-success">
+    <h2>Your appointment is confirmed!</h2>
+    <p>
+        Doctor: {{ object.slot.doctor }}<br>
+        Date: {{ object.slot.date }}<br>
+        Time: {{ object.slot.start_time }} - {{ object.slot.end_time }}<br>
+        Reason: {{ object.reason }}
+    </p>
+</div>
+<a href="{% url 'my-appointments' %}" class="btn btn-primary">My Appointments</a>
+{% endblock %}

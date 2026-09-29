@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Our Doctors</h1>
+<p>Choose a doctor to see their available appointment times.</p>
+
+<ul class="list-group">
+    {% for doctor in object_list %}
+        <li class="list-group-item">
+            <a href="{% url 'doctor-detail' doctor.pk %}">{{ doctor }}</a> - {{ doctor.specialisation }}
+        </li>
+    {% empty %}
+        <li class="list-group-item">No doctors yet.</li>
+    {% endfor %}
+</ul>
+{% endblock %}
