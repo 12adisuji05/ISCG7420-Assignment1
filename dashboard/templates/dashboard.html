@@ -3,11 +3,49 @@
 {% block title %}Admin Dashboard{% endblock %}
 
 {% block content %}
-<h1>Admin Dashboard</h1>
-<div class="list-group">
-    <a href="{% url 'dashboard-doctors' %}" class="list-group-item list-group-item-action">Manage Doctors</a>
-    <a href="{% url 'dashboard-slots' %}" class="list-group-item list-group-item-action">Manage Appointment Slots</a>
-    <a href="{% url 'dashboard-appointments' %}" class="list-group-item list-group-item-action">All Appointments</a>
-    <a href="{% url 'dashboard-patients' %}" class="list-group-item list-group-item-action">Patient Accounts</a>
+<h1 class="page-title h3 mb-1">Admin Dashboard</h1>
+<p class="text-muted mb-4">Manage doctors, time slots, bookings and patient accounts.</p>
+
+<div class="row g-4">
+    <div class="col-sm-6 col-lg-3">
+        <a href="{% url 'dashboard-doctors' %}" class="text-decoration-none text-reset">
+            <div class="card-soft doctor-card p-4 h-100">
+                <span class="step-icon mb-3"><i class="bi bi-person-badge"></i></span>
+                <div class="display-6 fw-bold">{{ doctor_count }}</div>
+                <div class="fw-bold">Doctors</div>
+                <div class="small text-primary mt-2">Manage <i class="bi bi-arrow-right"></i></div>
+            </div>
+        </a>
+    </div>
+    <div class="col-sm-6 col-lg-3">
+        <a href="{% url 'dashboard-slots' %}" class="text-decoration-none text-reset">
+            <div class="card-soft doctor-card p-4 h-100">
+                <span class="step-icon mb-3"><i class="bi bi-clock"></i></span>
+                <div class="display-6 fw-bold">{{ slot_count }}</div>
+                <div class="fw-bold">Time Slots</div>
+                <div class="small text-primary mt-2">Manage <i class="bi bi-arrow-right"></i></div>
+            </div>
+        </a>
+    </div>
+    <div class="col-sm-6 col-lg-3">
+        <a href="{% url 'dashboard-appointments' %}" class="text-decoration-none text-reset">
+            <div class="card-soft doctor-card p-4 h-100">
+                <span class="step-icon mb-3"><i class="bi bi-calendar-check"></i></span>
+                <div class="display-6 fw-bold">{{ appointment_count }}</div>
+                <div class="fw-bold">Appointments</div>
+                <div class="small text-primary mt-2">Manage <i class="bi bi-arrow-right"></i></div>
+            </div>
+        </a>
+    </div>
+    <div class="col-sm-6 col-lg-3">
+        <a href="{% url 'dashboard-patients' %}" class="text-decoration-none text-reset">
+            <div class="card-soft doctor-card p-4 h-100">
+                <span class="step-icon mb-3"><i class="bi bi-people"></i></span>
+                <div class="display-6 fw-bold">{{ patient_count }}</div>
+                <div class="fw-bold">Patients</div>
+                <div class="small text-primary mt-2">Manage <i class="bi bi-arrow-right"></i></div>
+            </div>
+        </a>
+    </div>
 </div>
 {% endblock %}

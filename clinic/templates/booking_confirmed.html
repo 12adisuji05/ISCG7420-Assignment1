@@ -3,14 +3,19 @@
 {% block title %}Booking Confirmed{% endblock %}
 
 {% block content %}
-<div class="alert alert-success">
-    <h2>Your appointment is confirmed!</h2>
-    <p>
-        Doctor: {{ object.slot.doctor }}<br>
-        Date: {{ object.slot.date }}<br>
-        Time: {{ object.slot.start_time }} - {{ object.slot.end_time }}<br>
-        Reason: {{ object.reason }}
-    </p>
+<div class="row justify-content-center">
+    <div class="col-md-7 col-lg-6">
+        <div class="card-soft p-4 p-md-5 text-center">
+            <i class="bi bi-check-circle-fill text-success display-3"></i>
+            <h1 class="page-title h3 mt-3">Your appointment is confirmed!</h1>
+            <ul class="list-group list-group-flush text-start my-4">
+                <li class="list-group-item"><i class="bi bi-person-badge"></i> {{ object.slot.doctor }}</li>
+                <li class="list-group-item"><i class="bi bi-calendar3"></i> {{ object.slot.date|date:"l j F Y" }}</li>
+                <li class="list-group-item"><i class="bi bi-clock"></i> {{ object.slot.start_time|time:"g:i A" }} - {{ object.slot.end_time|time:"g:i A" }}</li>
+                <li class="list-group-item"><i class="bi bi-chat-left-text"></i> {{ object.reason }}</li>
+            </ul>
+            <a href="{% url 'my-appointments' %}" class="btn btn-primary">My Appointments</a>
+        </div>
+    </div>
 </div>
-<a href="{% url 'my-appointments' %}" class="btn btn-primary">My Appointments</a>
 {% endblock %}

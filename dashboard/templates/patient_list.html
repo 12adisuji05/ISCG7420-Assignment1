@@ -3,23 +3,29 @@
 {% block title %}Patient Accounts{% endblock %}
 
 {% block content %}
-<h1>Patient Accounts</h1>
-<table class="table">
-    <tr><th>Username</th><th>Name</th><th>Email</th><th>Active</th><th></th></tr>
+<a href="{% url 'dashboard' %}" class="text-decoration-none"><i class="bi bi-arrow-left"></i> Dashboard</a>
+<div class="d-flex justify-content-between align-items-center my-3">
+<h1 class="page-title h3 mb-0">Patient Accounts</h1>
+</div>
+<div class="card-soft p-3">
+<div class="table-responsive">
+<table class="table table-hover align-middle mb-0">
+    <thead><tr><th>Username</th><th>Name</th><th>Email</th><th>Active</th><th></th></tr></thead>
     {% for patient in object_list %}
         <tr>
             <td>{{ patient.username }}</td>
             <td>{{ patient.first_name }} {{ patient.last_name }}</td>
             <td>{{ patient.email }}</td>
-            <td>{{ patient.is_active|yesno:"Yes,No" }}</td>
+            <td>{% if patient.is_active %}<span class="badge text-bg-success">Yes</span>{% else %}<span class="badge text-bg-secondary">No</span>{% endif %}</td>
             <td>
-                <a href="{% url 'update-patient' patient.pk %}" class="btn btn-secondary btn-sm">Edit</a>
-                <a href="{% url 'delete-patient' patient.pk %}" class="btn btn-danger btn-sm">Delete</a>
+                <a href="{% url 'update-patient' patient.pk %}" class="btn btn-outline-primary btn-sm">Edit</a>
+                <a href="{% url 'delete-patient' patient.pk %}" class="btn btn-outline-danger btn-sm">Delete</a>
             </td>
         </tr>
     {% empty %}
-        <tr><td colspan="5">No patients yet.</td></tr>
+        <tr><td class="text-center text-muted py-4" colspan="5">No patients yet.</td></tr>
     {% endfor %}
 </table>
-<a href="{% url 'dashboard' %}">Back to dashboard</a>
+</div>
+</div>
 {% endblock %}

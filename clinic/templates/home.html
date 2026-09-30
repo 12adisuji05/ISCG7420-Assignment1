@@ -1,16 +1,87 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Our Doctors</h1>
-<p>Choose a doctor to see their available appointment times.</p>
+<section class="hero mb-5">
+    <div class="row align-items-center g-4">
+        <div class="col-lg-7">
+            <p class="text-uppercase small fw-bold opacity-75 mb-2">Kia ora</p>
+            <h1 class="display-5 fw-bold">Piki Ora Medical Centre</h1>
+            <p class="lead opacity-75">See when our doctors are free and book your appointment online.</p>
+            {% if user.is_authenticated %}
+                {% if user.is_staff %}
+                    <a href="{% url 'dashboard' %}" class="btn btn-light btn-lg"><i class="bi bi-speedometer2"></i> Admin Dashboard</a>
+                {% else %}
+                    <a href="{% url 'book-appointment' %}" class="btn btn-coral btn-lg"><i class="bi bi-calendar-plus"></i> Book Appointment</a>
+                    <a href="{% url 'my-appointments' %}" class="btn btn-outline-light btn-lg">My Appointments</a>
+                {% endif %}
+            {% else %}
+                <a href="{% url 'register' %}" class="btn btn-coral btn-lg">Create an account</a>
+                <a href="{% url 'login' %}" class="btn btn-outline-light btn-lg">Login</a>
+            {% endif %}
+        </div>
+        <div class="col-lg-5">
+            <div class="row g-3">
+                <div class="col-6">
+                    <div class="stat">
+                        <div class="num">{{ object_list|length }}</div>
+                        <div class="small">Doctors</div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="stat">
+                        <div class="num">{{ free_slots }}</div>
+                        <div class="small">Free times</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-<ul class="list-group">
-    {% for doctor in object_list %}
-        <li class="list-group-item">
-            <a href="{% url 'doctor-detail' doctor.pk %}">{{ doctor }}</a> - {{ doctor.specialisation }}
-        </li>
-    {% empty %}
-        <li class="list-group-item">No doctors yet.</li>
-    {% endfor %}
-</ul>
+<section class="mb-5">
+    <h2 class="page-title h4 mb-4">How it works</h2>
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card-soft p-4 h-100">
+                <span class="step-icon mb-3"><i class="bi bi-person-plus"></i></span>
+                <h3 class="h6 fw-bold">Register</h3>
+                <p class="text-muted small mb-0">Create a free patient account.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card-soft p-4 h-100">
+                <span class="step-icon mb-3"><i class="bi bi-calendar-week"></i></span>
+                <h3 class="h6 fw-bold">Pick a doctor and time</h3>
+                <p class="text-muted small mb-0">Only free times are shown, so a slot can't be booked twice.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card-soft p-4 h-100">
+                <span class="step-icon mb-3"><i class="bi bi-pencil-square"></i></span>
+                <h3 class="h6 fw-bold">Change or cancel</h3>
+                <p class="text-muted small mb-0">Manage your bookings any time from My Appointments.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="doctors">
+    <h2 class="page-title h4 mb-4">Our Doctors</h2>
+    <div class="row g-4">
+        {% for doctor in object_list %}
+            <div class="col-sm-6 col-lg-3">
+                <a href="{% url 'doctor-detail' doctor.pk %}" class="text-decoration-none text-reset">
+                    <div class="card-soft doctor-card p-4 h-100 text-center">
+                        <div class="avatar mx-auto mb-3">{{ doctor.first_name|first }}{{ doctor.last_name|first }}</div>
+                        <h3 class="h6 fw-bold mb-1">{{ doctor }}</h3>
+                        <span class="badge rounded-pill text-bg-light mb-3">{{ doctor.specialisation }}</span>
+                        <div class="small text-primary fw-bold">View times <i class="bi bi-arrow-right"></i></div>
+                    </div>
+                </a>
+            </div>
+        {% empty %}
+            <p class="text-muted">No doctors yet.</p>
+        {% endfor %}
+    </div>
+</section>
 {% endblock %}

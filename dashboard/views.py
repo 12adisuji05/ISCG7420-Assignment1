@@ -18,6 +18,14 @@ class StaffRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
 class DashboardView(StaffRequiredMixin, TemplateView):
     template_name = 'dashboard.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['doctor_count'] = Doctor.objects.count()
+        context['slot_count'] = Slot.objects.count()
+        context['appointment_count'] = Appointment.objects.count()
+        context['patient_count'] = User.objects.filter(is_staff=False).count()
+        return context
+
 
 # Doctors
 class DoctorListView(StaffRequiredMixin, ListView):

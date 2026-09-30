@@ -3,22 +3,28 @@
 {% block title %}Doctors{% endblock %}
 
 {% block content %}
-<h1>Doctors</h1>
-<a href="{% url 'add-doctor' %}" class="btn btn-primary mb-3">Add Doctor</a>
-<table class="table">
-    <tr><th>Name</th><th>Specialisation</th><th></th></tr>
+<a href="{% url 'dashboard' %}" class="text-decoration-none"><i class="bi bi-arrow-left"></i> Dashboard</a>
+<div class="d-flex justify-content-between align-items-center my-3">
+<h1 class="page-title h3 mb-0">Doctors</h1>
+<a href="{% url 'add-doctor' %}" class="btn btn-coral">Add Doctor</a>
+</div>
+<div class="card-soft p-3">
+<div class="table-responsive">
+<table class="table table-hover align-middle mb-0">
+    <thead><tr><th>Name</th><th>Specialisation</th><th></th></tr></thead>
     {% for doctor in object_list %}
         <tr>
             <td>{{ doctor }}</td>
             <td>{{ doctor.specialisation }}</td>
             <td>
-                <a href="{% url 'update-doctor' doctor.pk %}" class="btn btn-secondary btn-sm">Edit</a>
-                <a href="{% url 'delete-doctor' doctor.pk %}" class="btn btn-danger btn-sm">Delete</a>
+                <a href="{% url 'update-doctor' doctor.pk %}" class="btn btn-outline-primary btn-sm">Edit</a>
+                <a href="{% url 'delete-doctor' doctor.pk %}" class="btn btn-outline-danger btn-sm">Delete</a>
             </td>
         </tr>
     {% empty %}
-        <tr><td colspan="3">No doctors yet.</td></tr>
+        <tr><td class="text-center text-muted py-4" colspan="3">No doctors yet.</td></tr>
     {% endfor %}
 </table>
-<a href="{% url 'dashboard' %}">Back to dashboard</a>
+</div>
+</div>
 {% endblock %}

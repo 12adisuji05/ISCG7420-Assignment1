@@ -3,24 +3,30 @@
 {% block title %}All Appointments{% endblock %}
 
 {% block content %}
-<h1>All Appointments</h1>
-<table class="table">
-    <tr><th>Patient</th><th>Doctor</th><th>Date</th><th>Time</th><th>Reason</th><th></th></tr>
+<a href="{% url 'dashboard' %}" class="text-decoration-none"><i class="bi bi-arrow-left"></i> Dashboard</a>
+<div class="d-flex justify-content-between align-items-center my-3">
+<h1 class="page-title h3 mb-0">All Appointments</h1>
+</div>
+<div class="card-soft p-3">
+<div class="table-responsive">
+<table class="table table-hover align-middle mb-0">
+    <thead><tr><th>Patient</th><th>Doctor</th><th>Date</th><th>Time</th><th>Reason</th><th></th></tr></thead>
     {% for appointment in object_list %}
         <tr>
             <td>{{ appointment.patient.username }}</td>
             <td>{{ appointment.slot.doctor }}</td>
-            <td>{{ appointment.slot.date }}</td>
-            <td>{{ appointment.slot.start_time }}</td>
+            <td>{{ appointment.slot.date|date:"D j M Y" }}</td>
+            <td>{{ appointment.slot.start_time|time:"g:i A" }}</td>
             <td>{{ appointment.reason }}</td>
             <td>
-                <a href="{% url 'update-appointment' appointment.pk %}" class="btn btn-secondary btn-sm">Edit</a>
-                <a href="{% url 'dashboard-cancel-appointment' appointment.pk %}" class="btn btn-danger btn-sm">Cancel</a>
+                <a href="{% url 'update-appointment' appointment.pk %}" class="btn btn-outline-primary btn-sm">Edit</a>
+                <a href="{% url 'dashboard-cancel-appointment' appointment.pk %}" class="btn btn-outline-danger btn-sm">Cancel</a>
             </td>
         </tr>
     {% empty %}
-        <tr><td colspan="6">No appointments yet.</td></tr>
+        <tr><td class="text-center text-muted py-4" colspan="6">No appointments yet.</td></tr>
     {% endfor %}
 </table>
-<a href="{% url 'dashboard' %}">Back to dashboard</a>
+</div>
+</div>
 {% endblock %}

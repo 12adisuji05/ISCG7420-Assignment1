@@ -12,6 +12,13 @@ class HomeView(ListView):
     model = Doctor
     template_name = 'home.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['free_slots'] = Slot.objects.filter(
+            appointment__isnull=True, date__gte=datetime.date.today()
+        ).count()
+        return context
+
 
 class DoctorDetailView(DetailView):
     model = Doctor
