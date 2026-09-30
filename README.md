@@ -33,8 +33,10 @@ The admin username is `admin`.
 ## References
 
 - Bootstrap. (n.d.). *Bootstrap 5.3 documentation*. https://getbootstrap.com/docs/5.3/
+- Bootstrap. (n.d.). *Bootstrap Icons* (Version 1.11). https://icons.getbootstrap.com/
 - Django Software Foundation. (n.d.). *Using the Django authentication system: LoginRequiredMixin and UserPassesTestMixin* (Version 5.2). https://docs.djangoproject.com/en/5.2/topics/auth/default/
 - Django Software Foundation. (n.d.). *django-admin createsuperuser* (Version 5.2). https://docs.djangoproject.com/en/5.2/ref/django-admin/#createsuperuser
+- Google Fonts. (n.d.). *Nunito*. https://fonts.google.com/specimen/Nunito
 - Jazzband. (n.d.). *dj-database-url* [Computer software]. https://github.com/jazzband/dj-database-url
 - Render. (n.d.). *Deploy a Django app on Render*. https://render.com/docs/deploy-django
 - WhiteNoise. (n.d.). *Using WhiteNoise with Django*. https://whitenoise.readthedocs.io/en/stable/django.html
