@@ -36,10 +36,6 @@ main { flex: 1; }
 .page-title { font-weight: 800; color: var(--navy); }
 .card-soft { background: #fff; border: 0; border-radius: 16px; box-shadow: 0 4px 20px rgba(22, 50, 79, .06); }
 
-.hero { background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%); color: #fff; border-radius: 24px; padding: 3rem; }
-.stat { background: rgba(255, 255, 255, .12); border-radius: 16px; padding: 1.25rem; text-align: center; }
-.stat .num { font-size: 2.4rem; font-weight: 800; line-height: 1; }
-
 .avatar {
     width: 56px; height: 56px; border-radius: 50%; background: #e8effc; color: var(--blue);
     font-weight: 800; font-size: 1.2rem; display: flex; align-items: center; justify-content: center;
@@ -55,7 +51,3 @@ main { flex: 1; }
 .table thead th { background: #eef3fb; color: var(--navy); border: 0; }
 
 footer { background: var(--navy); color: #cbd5e1; }
-
-@media (max-width: 576px) {
-    .hero { padding: 2rem 1.5rem; }
-}
