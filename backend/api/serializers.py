@@ -1,7 +1,4 @@
-import datetime
-
 from django.contrib.auth.models import User
-from django.contrib.auth import password_validation
 from rest_framework import serializers
 from rest_framework.authtoken.models import Token
 
@@ -45,8 +42,6 @@ class AppointmentSerializer(serializers.ModelSerializer):
         extra_kwargs = {'slot': {'validators': []}}
 
     def validate_slot(self, slot):
-        if slot.date < datetime.date.today():
-            raise serializers.ValidationError('You cannot book a time in the past.')
         booked = Appointment.objects.filter(slot=slot)
         if self.instance:
             booked = booked.exclude(pk=self.instance.pk)
@@ -63,10 +58,6 @@ class UserSerializer(serializers.ModelSerializer):
             'password': {'write_only': True},
             'is_staff': {'read_only': True},
         }
-
-    def validate_password(self, value):
-        password_validation.validate_password(value)
-        return value
 
     def create(self, validated_data):
         # create_user hashes the password

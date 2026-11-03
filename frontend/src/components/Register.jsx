@@ -52,7 +52,6 @@ function Register() {
                         <div className="mb-3">
                             <label className="form-label">Password</label>
                             <input type="password" name="password" className="form-control" value={form.password} onChange={handleChange} required />
-                            <div className="form-text">At least 8 characters, not only numbers.</div>
                         </div>
                         <button className="btn btn-coral w-100 py-2">Register</button>
                     </form>
