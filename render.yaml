@@ -1,9 +1,11 @@
-# Based on https://render.com/docs/deploy-django
+# Based on https://render.com/docs/deploy-django and https://render.com/docs/deploy-vite
 services:
+  # Django REST Framework backend (API)
   - type: web
     name: pikiora-clinic
     runtime: python
     plan: free
+    rootDir: backend
     buildCommand: ./build.sh
     startCommand: python -m gunicorn pikiora.wsgi:application
     envVars:
@@ -22,3 +24,22 @@ services:
         value: admin@pikiora.co.nz
       - key: DJANGO_SUPERUSER_PASSWORD
         sync: false
+      # React frontend address, allowed by CORS
+      - key: FRONTEND_URL
+        value: https://pikiora-frontend.onrender.com
+
+  # React frontend (static site)
+  - type: web
+    name: pikiora-frontend
+    runtime: static
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: VITE_API_URL
+        value: https://pikiora-clinic.onrender.com/api/
+    # Send every page (e.g. /my-appointments) to React Router
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
